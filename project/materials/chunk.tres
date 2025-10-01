@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://b65fmymhyf1lw"]
+
+[ext_resource type="Shader" uid="uid://c6mnnnsqlof3y" path="res://shaders/chunk.gdshader" id="1_42rvs"]
+[ext_resource type="Texture2D" uid="uid://b6shv13qk6f2k" path="res://textures/voxels.png" id="2_id1p1"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_42rvs")
+shader_parameter/atlas = ExtResource("2_id1p1")

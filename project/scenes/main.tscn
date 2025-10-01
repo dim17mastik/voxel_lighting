@@ -1,0 +1,63 @@
+[gd_scene load_steps=13 format=3 uid="uid://igtohtehh7em"]
+
+[ext_resource type="Script" uid="uid://ddsl8ip523rm3" path="res://scripts/player.gd" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://d3dfw2u1abv3s" path="res://scripts/generator.gd" id="1_o6xl0"]
+[ext_resource type="Script" uid="uid://cj5ixhd1w5lar" path="res://scripts/mesher.gd" id="2_tipki"]
+[ext_resource type="Script" uid="uid://bv1uv4grjvtcg" path="res://scripts/light_propagator.gd" id="3_85g3d"]
+[ext_resource type="Script" uid="uid://b10ek8tu2825a" path="res://scripts/light_map_maker.gd" id="4_choun"]
+[ext_resource type="Script" uid="uid://bjxypag88mqkb" path="res://scripts/chunk_manager.gd" id="5_ya4ey"]
+
+[sub_resource type="Environment" id="Environment_tefeu"]
+background_mode = 1
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tipki"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_85g3d"]
+seed = 1
+frequency = 0.3
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_choun"]
+seed = 2
+frequency = 0.1
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ya4ey"]
+seed = 3
+frequency = 0.1
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_eb6dy"]
+seed = 4
+frequency = 0.1
+
+[node name="Main" type="Node"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_tefeu")
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="Generator" type="Node" parent="World"]
+script = ExtResource("1_o6xl0")
+_stone_noise = SubResource("FastNoiseLite_tipki")
+_lamp_noise = SubResource("FastNoiseLite_85g3d")
+_red_noise = SubResource("FastNoiseLite_choun")
+_green_noise = SubResource("FastNoiseLite_ya4ey")
+_blue_noise = SubResource("FastNoiseLite_eb6dy")
+
+[node name="Mesher" type="Node" parent="World"]
+script = ExtResource("2_tipki")
+
+[node name="LightPropagator" type="Node" parent="World"]
+script = ExtResource("3_85g3d")
+
+[node name="LightMapMaker" type="Node" parent="World"]
+script = ExtResource("4_choun")
+
+[node name="ChunkManager" type="Node" parent="World"]
+script = ExtResource("5_ya4ey")
+
+[node name="Chunks" type="Node3D" parent="World"]
+
+[node name="Player" type="Node3D" parent="." groups=["player"]]
+script = ExtResource("1_o5qli")
+
+[node name="Camera" type="Camera3D" parent="Player"]
