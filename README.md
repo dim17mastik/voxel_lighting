@@ -16,6 +16,7 @@ Flood fill lighting implementation for Godot 4.5.
 - Mouse, arrow keys - rotation
 - Esc - quit (it doesn't close immediately because it waits for the thread to
 complete)
+- F11 - fullscreen
 
 ## Note
 
