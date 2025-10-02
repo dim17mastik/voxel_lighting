@@ -50,6 +50,13 @@ func _input(event: InputEvent) -> void:
 				rotation.x - motion.relative.y * _rotation_speed / width,
 				MIN_PITCH, MAX_PITCH
 		)
+	if event.is_action_pressed("fullscreen"):
+		DisplayServer.window_set_mode(
+				DisplayServer.WINDOW_MODE_FULLSCREEN
+				if DisplayServer.window_get_mode() !=
+				DisplayServer.WINDOW_MODE_FULLSCREEN
+				else DisplayServer.WINDOW_MODE_WINDOWED
+		)
 
 
 func _process(delta: float) -> void:
